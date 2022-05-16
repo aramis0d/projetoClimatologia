@@ -1,0 +1,56 @@
+from dis import COMPILER_FLAG_NAMES
+
+import tabela_correcao
+from tkinter import *
+
+def calcular():
+    pro=prod.get()
+    qt=float(qtde.get())
+    pre=float(preco.get())
+    ptotal=qt*pre
+    icms=ptotal*0.18
+    labelresult=Label(tela,text="| Produto |").grid(row=7,column=3)
+    labelresult=Label(tela,text="| Quantidade |").grid(row=7,column=4)
+    labelresult=Label(tela,text="| Preco |").grid(row=7,column=5)
+    labelresult=Label(tela,text="| Preco total |").grid(row=7,column=6)
+    labelresult=Label(tela,text="| ICMS |").grid(row=7,column=7)
+    labelresult=Label(tela,text=pro).grid(row=8,column=3)
+    labelresult=Label(tela,text=qt).grid(row=8,column=4)
+    labelresult=Label(tela,text="$ %.2f" % pre).grid(row=8,column=5)
+    labelresult=Label(tela,text="$ %.2f" % ptotal).grid(row=8,column=6)
+    labelresult=Label(tela,text="$ %.2f" % icms).grid(row=8,column=7)
+
+    return
+
+tela=Tk()
+tela.geometry('800x450')
+tela.title("Calculadora Balanço Hídrico")
+
+prod=StringVar()
+qtde=StringVar()
+preco=StringVar()
+
+label1=Label(tela,text="Fernando Ibrahim",fg="black").grid(row=0,column=0)
+label5=Label(tela,text="").grid(row=1,column=0)
+label2=Label(tela,text="Produto").grid(row=2,column=0)
+label3=Label(tela,text="Quantidade").grid(row=3,column=0)
+label4=Label(tela,text="Preco").grid(row=4,column=0)
+
+prodvar=Entry(tela,textvariable=prod).grid(row=2,column=2)
+qtdevar=Entry(tela,textvariable=qtde).grid(row=3,column=2)
+precovar=Entry(tela,textvariable=preco).grid(row=4,column=2)
+
+button1=Button(tela,text="Calcular", command=calcular).grid(row=5,column=0)
+
+tela.mainloop()
+
+valor = float(tabela_correcao.tabela_cor_q0.get('jan'))
+x = 2*valor
+print(x)
+
+
+# a = 6,75.10-7. i3 - 7,71.10-5. i2 + 1,792.10-2. i + 0,49239
+# evapo1 = 16*(10*temperatura/indiceI)*coefA
+# indiceI = somatorio (t/5)1,514 (7)
+# coefA = (6.75*(10**-7)*indiceI**3) - (7.71*(10**-5)*indiceI**2) + (1.792*(10**-2)*indiceI) + 0.49239
+
